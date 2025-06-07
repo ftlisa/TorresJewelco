@@ -164,6 +164,57 @@ nav {
   
 }
 
+/* rings css */
+
+
+.breadcrumb {
+  padding: 1rem 2rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  background: #fafafa;
+  flex-wrap: wrap;
+}
+
+.product-count {
+  font-size: 0.95rem;
+}
+
+.product-count a {
+  margin-left: 1rem;
+  text-decoration: underline;
+  color: #222;
+}
+
+.sort label {
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.sort select {
+  padding: 0.4rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.product-box {
+  background: #f0f0f0;
+  height: 200px;
+  border-radius: 10px;
+}
 
 
 
