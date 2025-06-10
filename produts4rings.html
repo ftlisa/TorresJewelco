@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - Torres Jewel Co</title>
+  <link rel="stylesheet" href="Assign3.css">
+  <link rel="stylesheet" href="typography.css">
+  <link rel="stylesheet" href="colours.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+  <script defer src="javascript.js"> </script>
+
+</head>
+
+    <body>
+        <div class="product-container">
+          <div class="product-image" id="productImage"></div>
+          <div class="product-name" id="productName"></div>
+          <div class="product-price" id="productPrice"></div>
+          <div class="product-description" id="productDescription"></div>
+          <a href="rings.html" class="back-link">← Back to Rings</a>
+        </div>
+      
+        <script>
+          const product = JSON.parse(localStorage.getItem('selectedProduct'));
+      
+          if (product) {
+            document.getElementById('productImage').style.backgroundImage = `url('${product.image}')`;
+            document.getElementById('productImage').style.backgroundSize = 'cover';
+            document.getElementById('productImage').style.backgroundPosition = 'center';
+            document.getElementById('productName').textContent = product.name;
+            document.getElementById('productPrice').textContent = product.price;
+            document.getElementById('productDescription').textContent = product.description;
+          } else {
+            document.querySelector('.product-container').innerHTML = '<p>Product not found. Please go back.</p>';
+          }
+        </script>
+      </body>
+      
+  
+
+</html>

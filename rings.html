@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Assign3.css">
-    <link rel="stylesheet" href="typography.css">
-    <link rel="stylesheet" href="colours.css">
-    <link rel="stylesheet" href="components.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
-    <script defer src="javascript.js"> </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rings - Torres Jewel Co.</title>
+  <link rel="stylesheet" href="Assign3.css">
+  <link rel="stylesheet" href="typography.css">
+  <link rel="stylesheet" href="colours.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+  <script defer src="javascript.js"> </script>
 </head>
 <body>
     <nav>
         <div class="logo">TORRES JEWEL <span style="font-weight: normal;">Co.</span></div>
         <button class="hamburger" id="hamburger">&#9776;</button>
         <div class="nav-links" id="navLinks">
-            <a href="index.html">Home</a>
-            <a href="#">Shop All</a>
-            <a href="rings.html">Rings</a>
-            <a href="#">Pendants</a>
+          <a href="index.html">Home</a>
+          <a href="#">Shop All</a>
+          <a href="rings.html">Rings</a>
+          <a href="#">Pendants</a>
         </div>
-    </nav>
-    <div class="banner_rings"></div>
+      </nav>
+    
+      <!-- Banner -->
+      <div class="banner-ring">
+        <img src="banner4rings.png" alt="Rings Banner" />
+      </div>
+    
+      <!-- Breadcrumb -->
+      <header>
+        <div class="breadcrumb">Home / Designer Jewellery / Rings</div>
+      </header>
+    
+      <!-- Top bar -->
+      <section class="top-bar">
+        <div class="product-count">
+          Showing 1 - 60 of 438 <a href="#">View All</a>
+        </div>
+        <div class="sort">
+          <label>Sort by:</label>
+          <select>
+            <option>Recommendations</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+          </select>
+        </div>
+      </section>
+     
 
-    <div class="breadcrumb">Home / Designer Jewellery / Rings</div>
-  </header>
-
-  <section class="top-bar">
-    <div class="product-count">
-      Showing 1 - 60 of 438 <a href="#">View All</a>
-    </div>
-    <div class="sort">
-      <label>Sort by:</label>
-      <select>
-        <option>Recommendations</option>
-        <option>Price: Low to High</option>
-        <option>Price: High to Low</option>
-      </select>
-    </div>
-  </section>
-
-  <section class="product-grid">
-    <!-- Placeholder product boxes -->
-    <div class="product-box"></div>
-    <div class="product-box"></div>
-    <div class="product-box"></div>
-    <div class="product-box"></div>
-    <div class="product-box"></div>
-    <div class="product-box"></div>
-  
-  </section>
+      <!-- Product Grid -->
+      <section class="product-grid" id="productGrid">
+        <!-- Boxes will be inserted here via JavaScript -->
+      </section>
 </body>
 </html>
