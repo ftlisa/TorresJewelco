@@ -1,3 +1,4 @@
+
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
 
@@ -247,41 +248,92 @@ filterDropdown.addEventListener('change', () => {
 
 /*for product page */
 
+// Show/hide cart preview with items
 document.getElementById('cartIcon').addEventListener('click', () => {
     const preview = document.getElementById('cartPreview');
     preview.classList.toggle('hidden');
   
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (preview.classList.contains('hidden')) return;
   
-    if (storedCart.length === 0) {
-      preview.innerHTML = "<p>Your bag is empty.</p>";
+    if (cart.length === 0) {
+      preview.innerHTML = `
+        <div class="cart-header">
+          <button class="close-preview" aria-label="Close cart preview">&#8592;</button>
+        </div>
+        <p>Your bag is empty.</p>
+      `;
+      attachCloseListener();
       return;
     }
   
-    // Build preview HTML
-    preview.innerHTML = storedCart.map(item => `
-      <div class="cart-item">
-        <div class="cart-image" style="background-image: url('${item.image}')"></div>
-        <div class="cart-info">
-          <h4>${item.name}</h4>
-          <p>${item.price}</p>
-          <p>${item.description}</p>
-        </div>
+    preview.innerHTML = `
+      <div class="cart-header">
+        <button class="close-preview" aria-label="Close cart preview">&#8592;</button>
       </div>
-    `).join('') + `<button id="checkoutBtn">Go to Checkout</button>`;
+      ${cart.map((item, index) => `
+        <div class="cart-item" data-index="${index}">
+          <div class="cart-image" style="background-image: url('${item.image}')"></div>
+          <div class="cart-info">
+            <h4>${item.name}</h4>
+            <p>${item.price}</p>
+            <p>${item.description}</p>
+          </div>
+          <button class="delete-item" aria-label="Remove item">×</button>
+        </div>
+      `).join('')}
+      <button id="checkoutBtn">Go to Checkout</button>
+    `;
+  
+    attachCloseListener();
+    attachDeleteListeners();
+  
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', () => {
+        window.location.href = 'cart.html'; // Replace with correct path if needed
+      });
+    }
   });
   
-  // Update bag count in corner
+  // Close cart preview
+  function attachCloseListener() {
+    const closeBtn = document.querySelector('.close-preview');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        document.getElementById('cartPreview').classList.add('hidden');
+      });
+    }
+  }
+  
+  // Remove item from cart
+  function attachDeleteListeners() {
+    document.querySelectorAll('.delete-item').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const index = parseInt(e.target.closest('.cart-item').dataset.index);
+        if (!isNaN(index)) {
+          cart.splice(index, 1);
+          saveCart();
+          // Rerender preview after deletion
+          document.getElementById('cartIcon').click();
+          document.getElementById('cartIcon').click();
+        }
+      });
+    });
+  }
+  
+  // Save cart to localStorage
+  function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+  }
+  
+  // Update bag count on page
   function updateCartCount() {
     const count = JSON.parse(localStorage.getItem('cart'))?.length || 0;
     document.getElementById('cartCount').textContent = count;
   }
   
-  // Call it on load
+  // Load cart and update UI on page load
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
   updateCartCount();
-  
-  
-  
-  
-  // Suggested products logic
   
