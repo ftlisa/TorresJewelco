@@ -22,7 +22,22 @@
           <a href="rings.html">Rings</a>
           <a href="#">Pendants</a>
         </div>
+        <div class="cart-icon-container" id="cartIcon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M7 4h-2l-3 7v11a1 1 0 001 1h16a1 1 0 001-1v-11l-3-7h-2m-2 0h-4v2h4v-2m6 7h-16l2.1-5h11.8l2.1 5z"/>
+            </svg>
+            <span id="cartCount" class="cart-count">0</span>
+
+          </div>
+          <!-- Cart Preview -->
+<div class="cart-preview hidden" id="cartPreview">
+<h3>Your Bag</h3>
+<div id="cartItemsContainer"></div>
+<button id="checkoutBtn">Checkout</button>
+</div>
+    
       </nav>
+      
     
       <!-- Banner -->
       <div class="banner-ring">
@@ -40,11 +55,11 @@
           Showing 1 - 60 of 438 <a href="#">View All</a>
         </div>
         <div class="sort">
-          <label>Sort by:</label>
-          <select>
-            <option>Recommendations</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
+          <label> Filter By:</label>
+          <select id="metalFilter">
+            <option value="all">All</option>
+            <option value="gold">Gold</option>
+            <option value="silver">Silver</option>
           </select>
         </div>
       </section>

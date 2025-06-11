@@ -17,3 +17,7 @@
     background-color: #a49466;
     transform: scale(1.05);
   }
+
+  button {
+    font-family: 'Georgia', serif;
+  }
