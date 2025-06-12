@@ -870,5 +870,12 @@ button:hover {
 
 
 .complete {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 30vh;
+  text-align: center;
+  padding: 20px;
+
 }
