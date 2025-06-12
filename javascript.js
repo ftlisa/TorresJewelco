@@ -190,9 +190,21 @@ const products = [
         metal: "silver"
       },
   ];
+  const shopAllProducts = [
+    {
+      id: "101",
+      name: "Silver Necklace",
+      description: "Elegant silver necklace with pearls.",
+      price: "$180",
+      image: "necklace1.jpg",
+      metal: "silver"
+    },
+    // Add more shop all products here
+  ];
   
   const grid = document.getElementById('productGrid');
 const filterDropdown = document.getElementById('metalFilter');
+const shopAllGrid = document.getElementById('shopAllProductGrid'); // for all 
 
 function renderProducts(filteredProducts) {
   grid.innerHTML = ""; // Clear items
@@ -205,7 +217,8 @@ function renderProducts(filteredProducts) {
     imageDiv.style.backgroundImage = `url('${product.image}')`;
     imageDiv.style.backgroundSize = 'cover';
     imageDiv.style.backgroundPosition = 'center';
-    imageDiv.style.height = '200px';
+    imageDiv.style.width = '100%'; // 🔥 important to make it fill the box
+imageDiv.style.height = '200px'; // adjust if you want it taller
     imageDiv.style.borderRadius = '10px 10px 0 0';
 
     const name = document.createElement('div');
@@ -233,6 +246,13 @@ function renderProducts(filteredProducts) {
 
 
 renderProducts(products);
+
+// shop all 
+
+
+
+
+
 
 // Dropdown filter 
 filterDropdown.addEventListener('change', () => {

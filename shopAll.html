@@ -1,142 +1,135 @@
-const product = JSON.parse(localStorage.getItem('selectedProduct'));
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-if (product) {
-  document.getElementById('productImage').style.backgroundImage = `url('${product.image}')`;
-  document.getElementById('productImage').style.backgroundSize = 'cover';
-  document.getElementById('productImage').style.backgroundPosition = 'center';
-  document.getElementById('productName').textContent = product.name;
-  document.getElementById('productPrice').textContent = product.price;
-  document.getElementById('productDescription').textContent = product.description;
-} else {
-  document.querySelector('.product-container').innerHTML = '<p>Product not found. Please go back.</p>';
-}
+    <link rel="stylesheet" href="Assign3.css">
+    <link rel="stylesheet" href="typography.css">
+    <link rel="stylesheet" href="colours.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+    
 
-// Load existing cart or start empty
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+</head>
 
-// Update cart count display
-function updateCartCount() {
-  const count = cart.length;
-  document.getElementById('cartCount').textContent = count;
-}
-
-// Save cart to localStorage
-function saveCart() {
-  localStorage.setItem('cart', JSON.stringify(cart));
-  updateCartCount();
-}
-
-// Add to cart button
-document.getElementById('addToCartBtn').addEventListener('click', () => {
-  if (!product) {
-    alert('No product to add!');
-    return;
-  }
-
-  cart.push(product);
-  saveCart();
-
-  alert(`${product.name} added to your bag`);
-});
-
-// Show/hide cart preview with items
-document.getElementById('cartIcon').addEventListener('click', () => {
-  const preview = document.getElementById('cartPreview');
-  preview.classList.toggle('hidden');
-
-  if (preview.classList.contains('hidden')) return; 
-
-  if (cart.length === 0) {
-    preview.innerHTML = `
-      <div class="cart-header">
-        <button class="close-preview" aria-label="Close cart preview">&#8592;</button>
-      </div>
-      <p>Your bag is empty.</p>
-    `;
-    attachCloseListener();
-    return;
-  }
-
-  preview.innerHTML = `
-    <div class="cart-header">
-      <button class="close-preview" aria-label="Close cart preview">&#8592;</button>
-    </div>
-    ${cart.map((item, index) => `
-      <div class="cart-item" data-index="${index}">
-        <div class="cart-image" style="background-image: url('${item.image}')"></div>
-        <div class="cart-info">
-          <h4>${item.name}</h4>
-          <p>${item.price}</p>
-          <p>${item.description}</p>
+<body>
+    <nav>
+        <div class="logo">TORRES JEWEL <span style="font-weight: normal;">Co.</span></div>
+        <button class="hamburger" id="hamburger">&#9776;</button>
+        <div class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="shopAll.html">Shop All</a>
+          <a href="rings.html">Rings</a>
+          <a href="#">Pendants</a>
         </div>
-        <button class="delete-item" aria-label="Remove item">×</button>
+        <div class="cart-icon-container" id="cartIcon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M7 4h-2l-3 7v11a1 1 0 001 1h16a1 1 0 001-1v-11l-3-7h-2m-2 0h-4v2h4v-2m6 7h-16l2.1-5h11.8l2.1 5z"/>
+            </svg>
+            <span id="cartCount" class="cart-count">0</span>
+
+          </div>
+          <!-- Cart Preview -->
+<div class="cart-preview hidden" id="cartPreview">
+<h3>Your Bag</h3>
+<div id="cartItemsContainer"></div>
+<button id="checkoutBtn">Checkout</button>
+</div>
+    
+      </nav>
+      
+    
+      <!-- Banner -->
+      <div class="banner-ring">
+        <img src="banner4rings.png" alt="Rings Banner" />
       </div>
-    `).join('')}
-    <button id="checkoutBtn">Go to Checkout</button>
-  `;
-  attachCloseListener();
-attachDeleteListeners();
+    
+      <!-- Breadcrumb -->
+      <header>
+        <div class="breadcrumb">Home / Designer Jewellery / Rings</div>
+      </header>
+    
+      <!-- Top bar -->
+    
+        <section class="top-bar">
+            <div class="product-count">
+              Showing 1 - 60 of 438 <a href="#">View All</a>
+            </div>
+            <div class="sort">
+              <label>Filter By:</label>
+              <select id="metalFilter">
+                <option value="all">All</option>
+                <option value="gold">Gold</option>
+                <option value="silver">Silver</option>
+              </select>
+            </div>
+          </section>
+          
+          <!-- Product Grid Container -->
+          
+<div id="productGrid"></div>
 
+<footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h2>Torres Jewel Co</h2>
+        <p>Timeless elegance, modern design.</p>
+      </div>
+  
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Collections</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>Email: support@torresjewelco.com</p>
+        <p>Phone: +61 123 456 789</p>
+        <p>Melbourne, Australia</p>
+      </div>
+  
+      <div class="footer-socials">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#"><img src="instaicon.webp" alt="Instagram"></a>
+          <a href="#"><img src="Facbookicon.webp" alt="Facebook"></a>
+          <a href="#"><img src="pintresticon.png" alt="Pinterest"></a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="footer-bottom">
+      <p>&copy; 2025 Torres Jewel Co. All rights reserved.</p>
+    </div>
+  </footer>
+  
 
-const checkoutBtn = document.getElementById('checkoutBtn');
-if (checkoutBtn) {
-  checkoutBtn.addEventListener('click', () => {
-    window.location.href = 'cart.html'; 
-  });
-}
-
-  attachCloseListener();
-  attachDeleteListeners();
-});
-
-// Close button in cart preview
-function attachCloseListener() {
-  const closeBtn = document.querySelector('.close-preview');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      document.getElementById('cartPreview').classList.add('hidden');
-    });
-  }
-}
-
-// Delete item 
-function attachDeleteListeners() {
-  document.querySelectorAll('.delete-item').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const index = parseInt(e.target.closest('.cart-item').dataset.index);
-      if (!isNaN(index)) {
-        cart.splice(index, 1);
-        saveCart();
-        //  after deletion
-        document.getElementById('cartIcon').click();
-        document.getElementById('cartIcon').click();
-      }
-    });
-  });
-}
-
-
-updateCartCount();
-
-// attempt 1 
-
-const products = [
+<script>
+    const products = [
     {
       id: "1",
-      name: "Gold Link Ring",
-      description: "A bold 18k gold link ring designed to stand out.",
-      price: "$250",
-      image: "img1.jpg",
+      name: "Pendant Alyssa",
+      description: "18ct White Gold Diamond.",
+      price: "$1040",
+      image: "image4all1.jpg",
 
-      metal: "gold"
+      metal: "silver"
     },
     {
       id: "2",
-      name: "Gold ",
-      description: "3 dimond ring with 18k gold.",
-      price: "$680",
-      image: "img2ring.jpg",
-      metal: "gold"
+      name: "Pendant Ava",
+      description: "18ct White Gold Diamond.",
+      price: "$1000",
+      image: "image4all2.jpg",
+      metal: "silver"
     },
     {
         id: "3",
@@ -156,11 +149,11 @@ const products = [
       },
       {
         id: "4",
-        name: "Diamond Halo Ring",
-        description: "Sparkling diamonds surround a stunning oval center stone.",
-        price: "$780",
-        image: "img4ring4.jpg",
-        metal: "gold"
+        name: "Pendant Celine",
+        description: "18ct White Gold Diamond Pendant",
+        price: "$2780",
+        image: "image4all3.jpg",
+        metal: "silver"
       },
       {
         id: "5",
@@ -172,10 +165,10 @@ const products = [
       },
       {
         id: "6",
-        name: "Diamond Halo Ring",
-        description: "Sparkling diamonds surround a stunning oval center stone.",
+        name: "Pendant Clea",
+        description: "18ct Yellow Gold Diamond Pendant.",
         price: "$780",
-        image: "img4rings6.jpg",
+        image: "image4all4.jpg",
         metal: "gold"
       },  
       {
@@ -293,7 +286,7 @@ const products = [
       image: "necklace1.jpg",
       metal: "silver"
     },
-    // Add more shop all products here
+    
   ];
   
   const grid = document.getElementById('productGrid');
@@ -311,8 +304,8 @@ function renderProducts(filteredProducts) {
     imageDiv.style.backgroundImage = `url('${product.image}')`;
     imageDiv.style.backgroundSize = 'cover';
     imageDiv.style.backgroundPosition = 'center';
-    imageDiv.style.width = '100%'; // 🔥 important to make it fill the box
-imageDiv.style.height = '200px'; // adjust if you want it taller
+    imageDiv.style.width = '100%'; 
+imageDiv.style.height = '200px'; 
     imageDiv.style.borderRadius = '10px 10px 0 0';
 
     const name = document.createElement('div');
@@ -340,3 +333,10 @@ imageDiv.style.height = '200px'; // adjust if you want it taller
 
 
 renderProducts(products);
+
+</script>
+</body>
+</html>
+    
+</body>
+</html>
