@@ -867,3 +867,8 @@ button:hover {
   margin: 0.25rem 0;
   color: #555;
 }
+
+
+.complete {
+  align-items: center;
+}
