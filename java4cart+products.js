@@ -340,3 +340,7 @@ imageDiv.style.height = '200px'; // adjust if you want it taller
 
 
 renderProducts(products);
+
+
+
+
