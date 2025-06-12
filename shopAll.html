@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="Assign3.css">
+    <link rel="stylesheet" href="typography.css">
+    <link rel="stylesheet" href="colours.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+    
+
+</head>
+
+<body>
+    <nav>
+        <div class="logo">TORRES JEWEL <span style="font-weight: normal;">Co.</span></div>
+        <button class="hamburger" id="hamburger">&#9776;</button>
+        <div class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="shopAll.html">Shop All</a>
+          <a href="rings.html">Rings</a>
+          <a href="#">Pendants</a>
+        </div>
+        <div class="cart-icon-container" id="cartIcon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M7 4h-2l-3 7v11a1 1 0 001 1h16a1 1 0 001-1v-11l-3-7h-2m-2 0h-4v2h4v-2m6 7h-16l2.1-5h11.8l2.1 5z"/>
+            </svg>
+            <span id="cartCount" class="cart-count">0</span>
+
+          </div>
+          <!-- Cart Preview -->
+<div class="cart-preview hidden" id="cartPreview">
+<h3>Your Bag</h3>
+<div id="cartItemsContainer"></div>
+<button id="checkoutBtn">Checkout</button>
+</div>
+    
+      </nav>
+      
+    
+      <!-- Banner -->
+      <div class="banner-ring">
+        <img src="banner4rings.png" alt="Rings Banner" />
+      </div>
+    
+      <!-- Breadcrumb -->
+      <header>
+        <div class="breadcrumb">Home / Designer Jewellery / Rings</div>
+      </header>
+    
+      <!-- Top bar -->
+    
+        <section class="top-bar">
+            <div class="product-count">
+              Showing 1 - 60 of 438 <a href="#">View All</a>
+            </div>
+            <div class="sort">
+              <label>Filter By:</label>
+              <select id="metalFilter">
+                <option value="all">All</option>
+                <option value="gold">Gold</option>
+                <option value="silver">Silver</option>
+              </select>
+            </div>
+          </section>
+          
+          <!-- Product Grid Container -->
+          
+<div id="productGrid"></div>
+
+<footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h2>Torres Jewel Co</h2>
+        <p>Timeless elegance, modern design.</p>
+      </div>
+  
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Collections</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>Email: support@torresjewelco.com</p>
+        <p>Phone: +61 123 456 789</p>
+        <p>Melbourne, Australia</p>
+      </div>
+  
+      <div class="footer-socials">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#"><img src="instaicon.webp" alt="Instagram"></a>
+          <a href="#"><img src="Facbookicon.webp" alt="Facebook"></a>
+          <a href="#"><img src="pintresticon.png" alt="Pinterest"></a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="footer-bottom">
+      <p>&copy; 2025 Torres Jewel Co. All rights reserved.</p>
+    </div>
+  </footer>
+  
+
+<script>
+    const products = [
+    {
+      id: "1",
+      name: "Pendant Alyssa",
+      description: "18ct White Gold Diamond.",
+      price: "$1040",
+      image: "image4all1.jpg",
+
+      metal: "silver"
+    },
+    {
+      id: "2",
+      name: "Pendant Ava",
+      description: "18ct White Gold Diamond.",
+      price: "$1000",
+      image: "image4all2.jpg",
+      metal: "silver"
+    },
+    {
+        id: "3",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning center stone.",
+        price: "$780",
+        image: "img4ring3.jpg",
+        metal: "gold"
+      },
+      {
+        id: "4",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring4.jpg",
+        metal: "gold"
+      },
+      {
+        id: "4",
+        name: "Pendant Celine",
+        description: "18ct White Gold Diamond Pendant",
+        price: "$2780",
+        image: "image4all3.jpg",
+        metal: "silver"
+      },
+      {
+        id: "5",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring6.jpg",
+        metal: "gold"
+      },
+      {
+        id: "6",
+        name: "Pendant Clea",
+        description: "18ct Yellow Gold Diamond Pendant.",
+        price: "$780",
+        image: "image4all4.jpg",
+        metal: "gold"
+      },  
+      {
+        id: "7",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring7.jpg",
+        metal: "gold"
+      },
+      {
+        id: "8",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring8.jpg",
+        metal: "gold"
+      },
+      {
+        id: "9",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring9.jpg",
+        metal: "silver"
+      },
+      {
+        id: "10",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring10.jpg",
+        metal: "silver"
+      },
+      {
+        id: "11",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring11.jpg",
+        metal: "silver"
+      },
+      
+      {
+        id: "12",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring12.jpg",
+        metal: "silver"
+      },
+      {
+        id: "13",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring13.jpg",
+        metal: "silver"
+      },
+      {
+        id: "14",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring14.jpg",
+        metal: "silver"
+      },
+      {
+        id: "15",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring15.jpg",
+        metal: "silver"
+      },
+      {
+        id: "16",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring16.jpg",
+        metal: "silver"
+      },
+      {
+        id: "17",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring17.jpg",
+        metal: "silver"
+      },
+      {
+        id: "18",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring18.jpg",
+        metal: "silver"
+      },
+      {
+        id: "19",
+        name: "Diamond Halo Ring",
+        description: "Sparkling diamonds surround a stunning oval center stone.",
+        price: "$780",
+        image: "img4ring20.jpg",
+        metal: "silver"
+      },
+  ];
+  const shopAllProducts = [
+    {
+      id: "101",
+      name: "Silver Necklace",
+      description: "Elegant silver necklace with pearls.",
+      price: "$180",
+      image: "necklace1.jpg",
+      metal: "silver"
+    },
+    
+  ];
+  
+  const grid = document.getElementById('productGrid');
+const filterDropdown = document.getElementById('metalFilter');
+const shopAllGrid = document.getElementById('shopAllProductGrid'); // for all 
+
+function renderProducts(filteredProducts) {
+  grid.innerHTML = ""; // Clear items
+
+  filteredProducts.forEach(product => {
+    const box = document.createElement('div');
+    box.className = 'product-box';
+
+    const imageDiv = document.createElement('div');
+    imageDiv.style.backgroundImage = `url('${product.image}')`;
+    imageDiv.style.backgroundSize = 'cover';
+    imageDiv.style.backgroundPosition = 'center';
+    imageDiv.style.width = '100%'; 
+imageDiv.style.height = '200px'; 
+    imageDiv.style.borderRadius = '10px 10px 0 0';
+
+    const name = document.createElement('div');
+    name.textContent = product.name;
+    name.style.fontWeight = 'bold';
+    name.style.padding = '0.5rem';
+
+    const price = document.createElement('div');
+    price.textContent = product.price;
+    price.style.color = 'green';
+    price.style.padding = '0 0.5rem 0.5rem';
+
+    box.addEventListener('click', () => {
+      localStorage.setItem('selectedProduct', JSON.stringify(product));
+      window.location.href = "produts4rings.html";
+    });
+
+    box.appendChild(imageDiv);
+    box.appendChild(name);
+    box.appendChild(price);
+
+    grid.appendChild(box);
+  });
+}
+
+
+renderProducts(products);
+
+</script>
+</body>
+</html>
+    
+</body>
+</html>
